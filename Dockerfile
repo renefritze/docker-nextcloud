@@ -99,6 +99,8 @@ RUN \
   rm -rf \
     /tmp/*
 
+RUN { echo "user = root "; echo "group = root"; } >> /etc/php83/php-fpm.d/www.conf && \
+  sed  's;command="/usr/sbin/php-fpm83";command="/usr/sbin/php-fpm83 -R";g' -i /etc/init.d/php-fpm83 
 # copy local files
 COPY root/ /
 
